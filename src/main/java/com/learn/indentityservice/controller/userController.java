@@ -5,6 +5,7 @@ import com.learn.indentityservice.Entity.User;
 import com.learn.indentityservice.dto.request.UserCreationRequest;
 import com.learn.indentityservice.dto.request.UserUpdateRequest;
 import com.learn.indentityservice.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,7 @@ public class userController {
     private UserService userService;
 
     @PostMapping
-    User createUser(@RequestBody UserCreationRequest request) {
+    User createUser(@RequestBody @Valid UserCreationRequest request) {
         return userService.createUser(request);
     }
 
