@@ -3,6 +3,7 @@ package com.learn.indentityservice.service;
 import com.learn.indentityservice.Entity.User;
 import com.learn.indentityservice.dto.request.UserCreationRequest;
 import com.learn.indentityservice.dto.request.UserUpdateRequest;
+import com.learn.indentityservice.exception.ErrorCode;
 import com.learn.indentityservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,7 @@ public class UserService {
         User user = new User();
 
         if(userRepository.existsByUsername(request.getUsername())) {
-            throw new RuntimeException("Username already exists");
+            throw new RuntimeException(ErrorCode.USER_EXISTED.getMessage());
         }
 
         user.setUsername(request.getUsername());
